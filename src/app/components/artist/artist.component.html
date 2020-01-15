@@ -32,14 +32,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr scope="row" *ngFor="let track of tracks">
+                <tr *ngFor="let track of tracks">
                     <td>
                         <img [src]="track.album.images | noimage" alt="album" class="img-thumb">
                     </td>
                     <td>{{track.album.name}}</td>
                     <td>{{track.name}}</td>
                     <td>
-                        <audio [src]="track.preview_url" controls></audio>
+                        <iframe [src]="track.uri | domseguro:'https://open.spotify.com/embed?uri='" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                     </td>
                 </tr>
             </tbody>
