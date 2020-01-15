@@ -10,6 +10,8 @@ export class SearchComponent {
 
   nuevasArtistas: any[] = [];
   loading: boolean;
+  errorServ: boolean = false;
+  mensajeError: string;
 
   constructor(private spotify: SpotifyService) { }
 
@@ -23,7 +25,12 @@ export class SearchComponent {
     .subscribe((data:any) =>{
       this.nuevasArtistas = data;
       this.loading = false;
-    });
+      this.errorServ = false;
+    }, (error:any) => {
+      this.errorServ = true;
+      this.loading = false;
+      this.mensajeError = error.error.error.message;
+  });
   }
 
 }
